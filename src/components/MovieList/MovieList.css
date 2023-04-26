@@ -1,0 +1,11 @@
+.movielist {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 36px 0 36px;
+}
+.pagination {
+  display: flex;
+  margin: 18px auto;
+}

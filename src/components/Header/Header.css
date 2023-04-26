@@ -1,0 +1,14 @@
+.header__nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 19px;
+}
+/* .tabs__properties {
+  font-family: 'Inter UI';
+  width: 64.64px;
+  height: 22px;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.65);
+} */
