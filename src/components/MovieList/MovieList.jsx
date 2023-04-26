@@ -55,6 +55,7 @@ export default class MovieList extends React.Component {
   render() {
     const { moviesData, currentPage, pageAll } = this.state;
     console.log(pageAll);
+    console.log('1');
     let dataFilms = moviesData;
 
     let resultMessage = this.state.showAlert ? (
