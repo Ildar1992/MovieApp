@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tabs } from 'antd';
+import PropTypes from 'prop-types';
 
 import './Header.css';
 
@@ -11,26 +12,17 @@ const Header = (props) => {
   ];
   return (
     <div className="header__nav">
-      <Tabs items={arr} className="tabs__properties" mode="horizontal" onChange={setActive} selectedkeys={active} />
+      <Tabs items={arr} mode="horizontal" onChange={setActive} selectedkeys={active} />
     </div>
   );
 };
+
+Header.defaultProps = {
+  setActive: () => {},
+  active: 'search',
+};
+Header.propTypes = {
+  setActive: PropTypes.func,
+  active: PropTypes.string,
+};
 export default Header;
-
-// import React from 'react';
-// import { Tabs } from 'antd';
-
-// import './Header.css';
-
-// const Header = () => {
-//   const arr = [
-//     { key: 'search', label: 'Search' },
-//     { key: 'rated', label: 'Rated' },
-//   ];
-//   return (
-//     <div className="header__nav">
-//       <Tabs items={arr} className="tabs__properties" mode="horizontal" />
-//     </div>
-//   );
-// };
-// export default Header;

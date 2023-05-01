@@ -1,10 +1,11 @@
 import React from 'react';
-// import { Alert } from 'antd';
+import { Alert } from 'antd';
 
 import Header from '../Header/Header';
 import Search from '../Search/Search';
 import MovieList from '../MovieList/MovieList';
-import Service from '../../service/Service';
+import MoviesApi from '../../service/Service';
+import { GenresProvider } from '../GenresContext/GenresContext';
 
 import './App.css';
 
@@ -12,9 +13,20 @@ export default class App extends React.Component {
   state = {
     active: 'search',
     searchValue: '',
+    genres: [],
     error: false,
   };
-  api = new Service();
+  api = new MoviesApi();
+
+  async componentDidMount() {
+    try {
+      await this.api.getSession();
+      const data = await this.api.getGenres();
+      this.setState({ genres: data.genres });
+    } catch (e) {
+      this.setState({ error: true });
+    }
+  }
 
   componentDidCatch() {
     this.setState({ error: true });
@@ -28,80 +40,21 @@ export default class App extends React.Component {
 
   onLabelChange = (e) => {
     this.setState({ searchValue: e.target.value });
-    console.log(this.state.searchValue);
   };
 
   render() {
     return (
-      <div className="wrapper">
-        <Header setActive={this.setActive} active={this.state.active} />
-        <Search onLabelChange={this.onLabelChange} />
-        <MovieList searchValue={this.state.searchValue} active={this.state.active} />
-      </div>
+      <main className="wrapper">
+        {!this.state.error ? (
+          <GenresProvider value={this.state.genres}>
+            <Header setActive={this.setActive} active={this.state.active} />
+            {this.state.active === 'search' ? <Search onLabelChange={this.onLabelChange} /> : null}
+            <MovieList searchValue={this.state.searchValue} active={this.state.active} />
+          </GenresProvider>
+        ) : (
+          <Alert type="error" message="Connection refused,please use VPN" showIcon="true" />
+        )}
+      </main>
     );
   }
 }
-
-// import React from 'react';
-// import { debounce } from 'lodash';
-// import { Alert } from 'antd';
-
-// import Header from '../Header/Header';
-// import Search from '../Search/Search';
-// import MovieList from '../MovieList/MovieList';
-// import Service from '../../service/Service';
-
-// import './App.css';
-
-// export default class App extends React.Component {
-//   state = {
-//     searchValue: '',
-//     moviesData: [],
-//     showAlert: false,
-//     searchPage: 1,
-//   };
-//   api = new Service();
-//   debounceFn = debounce(() => this.getSearchMovies(), 2000, { maxWait: Infinity });
-
-//   onLabelChange = (e) => {
-//     this.setState({ searchValue: e.target.value });
-//     console.log(this.state.searchValue);
-//   };
-//   componentDidUpdate(prevProps, prevState) {
-//     if (prevState.searchValue !== this.state.searchValue) {
-//       this.debounceFn();
-//     }
-//   }
-
-//   getSearchMovies = () => {
-//     this.api.getSearchMovies(this.state.searchValue, this.state.searchPage).then((res) => {
-//       console.log(res);
-//       this.setState(() => {
-//         return {
-//           moviesData: res.results,
-//           showAlert: res.results.length === 0,
-//         };
-//       });
-//     });
-//   };
-
-//   render() {
-//     return (
-//       <div className="wrapper">
-//         <Header />
-//         <Search onLabelChange={this.onLabelChange} />
-//         <MovieList moviesData={this.state.moviesData} />
-//         {this.state.showAlert ? (
-//           <Alert
-//             message="Warning"
-//             description="We don't have movies with that name on our site :(
-//     Try to write again"
-//             type="warning"
-//             showIcon
-//             closable
-//           />
-//         ) : null}
-//       </div>
-//     );
-//   }
-// }

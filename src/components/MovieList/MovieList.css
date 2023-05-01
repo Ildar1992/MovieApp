@@ -1,11 +1,24 @@
 .movielist {
   display: flex;
-  gap: 20px;
+  gap: 30px;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 20px 36px 0 36px;
+}
+.movielist__error {
+  margin: 0 auto;
+  margin-top: 10px;
+}
+.movielist__spin {
+  margin: 0 auto;
+  margin: 30px;
+  width: 100%;
 }
 .pagination {
   display: flex;
   margin: 18px auto;
+}
+@media all and (max-width: 994px) {
+  .movielist {
+    justify-content: center;
+  }
 }
