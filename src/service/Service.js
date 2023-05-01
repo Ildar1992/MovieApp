@@ -11,7 +11,6 @@ export default class Service {
       throw new Error(e);
     }
   }
-
   async getSearchMovies(searchValue, pageNumber = 1) {
     return await this.getResource(
       `${this.baseUrl}search/movie?api_key=${this.apiKey}&query=${searchValue}&page=${pageNumber}`
