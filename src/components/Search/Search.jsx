@@ -3,7 +3,7 @@ import { Input } from 'antd';
 import PropTypes from 'prop-types';
 import './Search.css';
 
-export default class Search extends React.Component {
+class Search extends React.Component {
   static defaultProps = {
     onLabelChange: () => {},
   };
@@ -12,7 +12,7 @@ export default class Search extends React.Component {
   };
   render() {
     return (
-      <div className="search">
+      <section className="search">
         <Input
           className="search__input"
           onChange={this.props.onLabelChange}
@@ -20,7 +20,8 @@ export default class Search extends React.Component {
           autoFocus
           required
         />
-      </div>
+      </section>
     );
   }
 }
+export default Search;

@@ -11,9 +11,9 @@ const Header = (props) => {
     { label: 'Rated', key: 'rated' },
   ];
   return (
-    <div className="header__nav">
+    <header className="header__nav">
       <Tabs items={arr} mode="horizontal" onChange={setActive} selectedkeys={active} />
-    </div>
+    </header>
   );
 };
 

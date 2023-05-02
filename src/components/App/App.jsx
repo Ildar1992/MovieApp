@@ -5,11 +5,11 @@ import Header from '../Header/Header';
 import Search from '../Search/Search';
 import MovieList from '../MovieList/MovieList';
 import MoviesApi from '../../service/Service';
-import { GenresProvider } from '../GenresContext/GenresContext';
+import { GenresProvider } from '../../context/GenresContext';
 
 import './App.css';
 
-export default class App extends React.Component {
+class App extends React.Component {
   state = {
     active: 'search',
     searchValue: '',
@@ -58,3 +58,4 @@ export default class App extends React.Component {
     );
   }
 }
+export default App;

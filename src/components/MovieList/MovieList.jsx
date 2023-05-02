@@ -8,7 +8,7 @@ import MoviesApi from '../../service/Service';
 
 import './MovieList.css';
 
-export default class MovieList extends React.Component {
+class MovieList extends React.Component {
   static defaultProps = {
     searchValue: '',
     active: 'search',
@@ -80,7 +80,6 @@ export default class MovieList extends React.Component {
     this.api
       .getSearchMovies(this.state.query, page)
       .then((res) => {
-        console.log(res);
         this.setState({
           moviesData: res.results,
           pageAll: res.total_pages,
@@ -170,3 +169,4 @@ Try to write again"
     );
   }
 }
+export default MovieList;

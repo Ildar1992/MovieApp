@@ -3,12 +3,12 @@ import { Spin, Card, Tag, Rate, Alert } from 'antd';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
-import { GenresConsumer } from '../GenresContext/GenresContext';
+import { GenresConsumer } from '../../context/GenresContext';
 import MoviesApi from '../../service/Service';
 
 import './MovieCard.css';
 
-export default class MovieCard extends React.Component {
+class MovieCard extends React.Component {
   static defaultProps = {
     logo: '',
     genre: [],
@@ -106,3 +106,4 @@ export default class MovieCard extends React.Component {
     );
   }
 }
+export default MovieCard;
